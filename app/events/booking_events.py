@@ -1,8 +1,11 @@
 from app.events.base import BaseEvent
+import uuid
 
-class BookingRequested(BaseEvent):
-    def __init__(self, payload, request_id=None):
-        super().__init__("BookingRequested", payload, request_id)
+class BookingRequested:
+    event_type = "BOOKING_REQUESTED"
+    def __init__(self, payload: dict):
+        self.request_id = str(uuid.uuid4())
+        self.payload = payload
 
 class PriceCalculated(BaseEvent):
     def __init__(self, payload, request_id):
